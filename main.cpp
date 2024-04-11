@@ -102,6 +102,12 @@ enum class SortingMethod {
     ShellSort
 };
 
+enum class PivotType {
+    FIRST,
+    LAST,
+    MIDDLE,
+    RANDOM
+};
 
 SortingMethod getUserChoice() {
     printAllSortingMethods();
@@ -122,9 +128,8 @@ SortingMethod getUserChoice() {
     }
 }
 
-
 template<typename T>
-typename QuickSort<T>::PivotType getPivotChoice() {
+void getPivotChoice(std::vector<T> &arrays) {
     int choice;
     std::cout << "Wybierz typ pivota:\n";
     std::cout << "1. Pierwszy element\n";
@@ -133,44 +138,107 @@ typename QuickSort<T>::PivotType getPivotChoice() {
     std::cout << "4. Losowy element\n";
     std::cin >> choice;
     switch (choice) {
-        case 1: return QuickSort<T>::PivotType::FIRST;
-        case 2: return QuickSort<T>::PivotType::LAST;
-        case 3: return QuickSort<T>::PivotType::MIDDLE;
-        case 4: return QuickSort<T>::PivotType::RANDOM;
+        case 1:
+        {
+            for(auto& array : arrays){
+                if constexpr (std::is_same_v<T, int>) {
+                    QuickSort<T> sorter = QuickSort<int>::PivotType::FIRST;
+                    sorter.sort(array);
+                } else if constexpr (std::is_same_v<T, double>) {
+                    QuickSort<T> sorter = QuickSort<double>::PivotType::FIRST;
+                    sorter.sort(array);
+                } else if constexpr (std::is_same_v<T, char>) {
+                    QuickSort<T> sorter = QuickSort<char>::PivotType::FIRST;
+                    sorter.sort(array);
+                } else {
+                    cout<<"Bład";
+                }
+            }
+        }
+        case 2:
+        {
+            for(auto& array : arrays){
+                if constexpr (std::is_same_v<T, int>) {
+                    QuickSort<T> sorter = QuickSort<int>::PivotType::LAST;
+                    sorter.sort(array);
+                } else if constexpr (std::is_same_v<T, double>) {
+                    QuickSort<T> sorter = QuickSort<double>::PivotType::LAST;
+                    sorter.sort(array);
+                } else if constexpr (std::is_same_v<T, char>) {
+                    QuickSort<T> sorter = QuickSort<char>::PivotType::LAST;
+                    sorter.sort(array);
+                } else {
+                    return getPivotChoice(arrays);
+                }
+            }
+        }
+        case 3:
+        {
+            for(auto& array : arrays){
+                if constexpr (std::is_same_v<T, int>) {
+                    QuickSort<T> sorter = QuickSort<int>::PivotType::MIDDLE;
+                    sorter.sort(array);
+                } else if constexpr (std::is_same_v<T, double>) {
+                    QuickSort<T> sorter = QuickSort<double>::PivotType::MIDDLE;
+                    sorter.sort(array);
+                } else if constexpr (std::is_same_v<T, char>) {
+                    QuickSort<T> sorter = QuickSort<char>::PivotType::MIDDLE;
+                    sorter.sort(array);
+                } else {
+                    return getPivotChoice(arrays);
+                }
+            }
+        }
+        case 4:
+        {
+            for(auto& array : arrays){
+                if constexpr (std::is_same_v<T, int>) {
+                    QuickSort<T> sorter = QuickSort<int>::PivotType::RANDOM;
+                    sorter.sort(array);
+                } else if constexpr (std::is_same_v<T, double>) {
+                    QuickSort<T> sorter = QuickSort<double>::PivotType::RANDOM;
+                    sorter.sort(array);
+                } else if constexpr (std::is_same_v<T, char>) {
+                    QuickSort<T> sorter = QuickSort<char>::PivotType::RANDOM;
+                    sorter.sort(array);
+                } else {
+                    return getPivotChoice(arrays);
+                }
+            }
+        }
         default:
             std::cout << "Niepoprawny wybór, używam ostatniego elementu jako pivot." << std::endl;
-            return QuickSort<T>::PivotType::LAST;
+            QuickSort<T>::PivotType::LAST;
     }
 }
 
 // Zaktualizowana metoda sortingMethod
 template<typename T>
 void sortingMethod(std::vector<std::vector<T>>& arrays, SortingMethod method) {
-    for (auto& array : arrays) {
-        switch (method) {
-            case SortingMethod::InsertionSort: {
-                InsertionSort<T> sorter;
-                sorter.sort(array);
-                break;
-            }
-            case SortingMethod::QuickSort: {
-
-                QuickSort<T> sorter;
-                sorter.sort(array); // Sortuj tablicę
-                break;
-            }
-            case SortingMethod::HeapSort: {
-                HeapSort<T> sorter;
-                sorter.sort(array);
-                break;
-            }
-            case SortingMethod::ShellSort: {
-                ShellSort<T> sorter;
-                sorter.sort(array);
-                break;
+    if (SortingMethod::QuickSort != method){
+        for (auto& array : arrays) {
+            switch (method) {
+                case SortingMethod::InsertionSort: {
+                    InsertionSort<T> sorter;
+                    sorter.sort(array);
+                    break;
+                }
+                case SortingMethod::HeapSort: {
+                    HeapSort<T> sorter;
+                    sorter.sort(array);
+                    break;
+                }
+                case SortingMethod::ShellSort: {
+                    ShellSort<T> sorter;
+                    sorter.sort(array);
+                    break;
+                }
             }
         }
+    }else{
+        getPivotChoice(arrays);
     }
+
 }
 int main() {
     std::cout<<"Witam w moim programie ktory polega na sortowaniu danych od najmniejszej wartosci do najwiekszej"<<std::endl<<endl;

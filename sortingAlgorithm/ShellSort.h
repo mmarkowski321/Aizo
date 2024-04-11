@@ -29,6 +29,7 @@ public:
         SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN); // Ustaw kolor tekstu na zielony
         std::cout << "Czas sortowania: " << elapsed.count() << " ms\n";
         SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Reset do domyślnych kolorów
+        saveResultsToFile(arr.size(), identrifyType(arr), elapsed.count());
     }
 private:
     std::string identrifyType(std::vector<T> &arr){
@@ -41,6 +42,15 @@ private:
             return "char";
         } else {
             return "Undefined";
+        }
+    }
+    void saveResultsToFile(size_t size, const std::string& typeName, double elapsedTime) {
+        std::ofstream file("sort_results_shellSort.csv", std::ios::app); // Otwiera plik do dopisywania
+        if (file.is_open()) {
+            file << typeName << "," << size << "," << elapsedTime << "\n";
+            file.close();
+        } else {
+            std::cerr << "Nie udało się otworzyć pliku do zapisu wyników.\n";
         }
     }
 };
