@@ -25,14 +25,24 @@ public:
         std::string type = identrifyType(arr);
         std::cout<<"Sortowanie tablicy o rozmiarze "<<arr.size()<<" i typie "<<type<<std::endl;
         SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN); // Ustaw kolor tekstu na zielony
-        std::cout << "Czas sortowania: " << elapsed.count() << " ms\n";
+        std::cout << "Czas sortowania: " << elapsed.count() << " ms\n"<<" "<<pivotType;
         SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Reset do domyślnych kolorów
-        saveResultsToFile(arr.size(), identrifyType(arr), elapsed.count());
+        saveResultsToFile(arr.size(), identrifyType(arr), elapsed.count(),pivotType);
+    }
+    void checkCorrectnessOfSorting(std::vector<T>& arr) override {
+        if (arr.size() > 1) { // Sprawdzenie czy tablica ma więcej niż jeden element
+            for (int i = 0; i < arr.size() - 1; ++i) { // Pętla po wszystkich elementach poza ostatnim
+                if (arr[i] > arr[i + 1]) { // Jeśli znaleziono element w złej kolejności
+                    std::cout << "Błąd w sortowaniu: arr[" << i << "] = " << arr[i] << " > arr[" << i + 1 << "] = " << arr[i + 1] << std::endl;
+                    return; // Przerwanie funkcji, gdy znaleziono błąd
+                }
+            }
+            std::cout << "Tablica posortowana poprawnie" << std::endl;
+        } else {
+            std::cout << "Tablica ma mniej niż dwa elementy, więc jest automatycznie posortowana" << std::endl;
+        }
     }
 
-    void setPivotType(PivotType type) {
-        pivotType = type;
-    }
 
 private:
     std::string identrifyType(std::vector<T> &arr){
@@ -93,13 +103,22 @@ private:
             quickSort(arr, pi + 1, high);
         }
     }
-    void saveResultsToFile(size_t size, const std::string& typeName, double elapsedTime) {
+    void saveResultsToFile(size_t size, const std::string& typeName, double elapsedTime,PivotType pivotType) {
         std::ofstream file("sort_results_quickSort.csv", std::ios::app); // Otwiera plik do dopisywania
         if (file.is_open()) {
-            file << typeName << "," << size << "," << elapsedTime << "\n";
+            file << typeName << "," << size << "," << elapsedTime << ","<< pivotTypeToString(pivotType) << "\n";
             file.close();
         } else {
             std::cerr << "Nie udało się otworzyć pliku do zapisu wyników.\n";
+        }
+    }
+    std::string pivotTypeToString(PivotType pivotType) {
+        switch (pivotType) {
+            case FIRST: return "First";
+            case LAST: return "Last";
+            case MIDDLE: return "Middle";
+            case RANDOM: return "Random";
+            default: return "Unknown";
         }
     }
 };

@@ -11,4 +11,11 @@ add_executable(Aizo main.cpp
         sortingAlgorithm/ShellSort.h
         AlgorithmTests.cpp
         AlgorithmTests.h
+        FileReader.cpp
+        FileReader.h
+        RandomArrayGenerator.cpp
+        RandomArrayGenerator.h
+        UserInterface.cpp
+        UserInterface.h
+        SortingMethods.h
 )

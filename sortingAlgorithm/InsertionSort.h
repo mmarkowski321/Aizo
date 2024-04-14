@@ -32,6 +32,19 @@ public:
         SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Reset do domyślnych kolorów
         saveResultsToFile(arr.size(), identrifyType(arr), elapsed.count());
     }
+    void checkCorrectnessOfSorting(std::vector<T>& arr) override {
+        if (arr.size() > 1) { // Sprawdzenie czy tablica ma więcej niż jeden element
+            for (int i = 0; i < arr.size() - 1; ++i) { // Pętla po wszystkich elementach poza ostatnim
+                if (arr[i] > arr[i + 1]) { // Jeśli znaleziono element w złej kolejności
+                    std::cout << "Błąd w sortowaniu: arr[" << i << "] = " << arr[i] << " > arr[" << i + 1 << "] = " << arr[i + 1] << std::endl;
+                    return; // Przerwanie funkcji, gdy znaleziono błąd
+                }
+            }
+            std::cout << "Tablica posortowana poprawnie" << std::endl;
+        } else {
+            std::cout << "Tablica ma mniej niż dwa elementy, więc jest automatycznie posortowana" << std::endl;
+        }
+    }
 private:
     std::string identrifyType(std::vector<T> &arr){
         std::string typeName = typeid(T).name();

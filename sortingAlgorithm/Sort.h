@@ -7,6 +7,7 @@ template<typename T>
 class Sort {
 public:
     virtual void sort(std::vector<T>& arr) = 0;
+    virtual void checkCorrectnessOfSorting(std::vector<T>& arr)=0;
     virtual ~Sort() {}
 };
 
