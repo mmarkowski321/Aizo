@@ -49,8 +49,8 @@ template<typename T>
 void SortingMethods::getShellChoice(std::vector<T> &arrays){
     int choice;
     std::cout << "Wybierz typ sekwencji Shella:\n";
-    std::cout << "1. Klasyczna sekwencja Shella (początkowa wartość gap równa połowie długości tablicy, redukcja gapu o połowę w każdym kroku)\n";
-    std::cout << "2. Sekwencja Sedgewicka (zaawansowana sekwencja oparta na połączeniu dwóch serii wzorów, zapewniająca lepszą efektywność)\n";
+    std::cout << "1. Klasyczna sekwencja Shella (poczatkowa wartosc gap rowna polowie dlugosci tablicy, redukcja gapu o polowe w kazdym kroku)\n";
+    std::cout << "2. Sekwencja Sedgewicka (zaawansowana sekwencja oparta na polaczeniu dwoch serii wzorow, zapewniajaca lepsza efektywnosc)\n";
     std::cin>>choice;
     switch (choice) {
         case 1:
@@ -69,7 +69,7 @@ void SortingMethods::getShellChoice(std::vector<T> &arrays){
                     sorter.sort(array);
                     sorter.checkCorrectnessOfSorting(array);
                 } else {
-                    std::cout<<"Bład";
+                    std::cout<<"Blad";
                 }
             }
             break;
@@ -90,7 +90,7 @@ void SortingMethods::getShellChoice(std::vector<T> &arrays){
                     sorter.sort(array);
                     sorter.checkCorrectnessOfSorting(array);
                 } else {
-                    std::cout<<"Bład";
+                    std::cout<<"Blad";
                 }
             }
             break;
@@ -125,7 +125,7 @@ void SortingMethods::getPivotChoice(std::vector<T> &arrays) {
     std::cout << "Wybierz typ pivota:\n";
     std::cout << "1. Pierwszy element\n";
     std::cout << "2. Ostatni element\n";
-    std::cout << "3. Element środkowy\n";
+    std::cout << "3. Element srodkowy\n";
     std::cout << "4. Losowy element\n";
     std::cin >> choice;
     switch (choice) {

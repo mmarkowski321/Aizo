@@ -20,7 +20,7 @@ public:
         if (arr.size() > 1) { // Sprawdzenie czy tablica ma więcej niż jeden element
             for (int i = 0; i < arr.size() - 1; ++i) { // Pętla po wszystkich elementach poza ostatnim
                 if (arr[i] > arr[i + 1]) { // Jeśli znaleziono element w złej kolejności
-                    std::cout << "Błąd w sortowaniu: arr[" << i << "] = " << arr[i] << " > arr[" << i + 1 << "] = " << arr[i + 1] << std::endl;
+                    std::cout << "Bład w sortowaniu: arr[" << i << "] = " << arr[i] << " > arr[" << i + 1 << "] = " << arr[i + 1] << std::endl;
                     return; // Przerwanie funkcji, gdy znaleziono błąd
                 }
             }
@@ -55,7 +55,7 @@ public:
         printResults(arr, elapsed);
     }
 private:
-    std::string identrifyType(std::vector<T> &arr){
+    std::string identifyType(std::vector<T> &arr){
         std::string typeName = typeid(T).name();
         if constexpr (std::is_same_v<T, int>) {
             return "int";
@@ -119,10 +119,10 @@ private:
     void saveResultsToFile(size_t size, double elapsedTime) {
         std::ofstream file("sort_results_shellSort.csv", std::ios::app);
         if (file.is_open()) {
-            file << "ShellSort" << "," << size << "," << elapsedTime << "\n";
+            file << "Shell" << "," << size << "," << elapsedTime << "\n";
             file.close();
         } else {
-            std::cerr << "Failed to open file for writing results.\n";
+            std::cerr << "Blad zapisania danych z sortowania ShellSort.\n";
         }
     }
 };

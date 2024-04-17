@@ -61,8 +61,8 @@ build CMakeFiles/Aizo.dir/AlgorithmTests.cpp.obj: CXX_COMPILER__Aizo_unscanned_D
   OBJECT_DIR = CMakeFiles\Aizo.dir
   OBJECT_FILE_DIR = CMakeFiles\Aizo.dir
 
-build CMakeFiles/Aizo.dir/FileReader.cpp.obj: CXX_COMPILER__Aizo_unscanned_Debug C$:/Users/marko/CLionProjects/Aizo/FileReader.cpp || cmake_object_order_depends_target_Aizo
-  DEP_FILE = CMakeFiles\Aizo.dir\FileReader.cpp.obj.d
+build CMakeFiles/Aizo.dir/FileController.cpp.obj: CXX_COMPILER__Aizo_unscanned_Debug C$:/Users/marko/CLionProjects/Aizo/FileController.cpp || cmake_object_order_depends_target_Aizo
+  DEP_FILE = CMakeFiles\Aizo.dir\FileController.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Aizo.dir
   OBJECT_FILE_DIR = CMakeFiles\Aizo.dir
@@ -87,7 +87,7 @@ build CMakeFiles/Aizo.dir/UserInterface.cpp.obj: CXX_COMPILER__Aizo_unscanned_De
 #############################################
 # Link the executable Aizo.exe
 
-build Aizo.exe: CXX_EXECUTABLE_LINKER__Aizo_Debug CMakeFiles/Aizo.dir/main.cpp.obj CMakeFiles/Aizo.dir/AlgorithmTests.cpp.obj CMakeFiles/Aizo.dir/FileReader.cpp.obj CMakeFiles/Aizo.dir/RandomArrayGenerator.cpp.obj CMakeFiles/Aizo.dir/UserInterface.cpp.obj
+build Aizo.exe: CXX_EXECUTABLE_LINKER__Aizo_Debug CMakeFiles/Aizo.dir/main.cpp.obj CMakeFiles/Aizo.dir/AlgorithmTests.cpp.obj CMakeFiles/Aizo.dir/FileController.cpp.obj CMakeFiles/Aizo.dir/RandomArrayGenerator.cpp.obj CMakeFiles/Aizo.dir/UserInterface.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Aizo.dir

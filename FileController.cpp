@@ -1,7 +1,7 @@
-#include "FileReader.h"
+#include "FileController.h"
 #include <fstream>
 #include <iostream>
-std::vector<int> FileReader::readDataFromFile() {
+std::vector<int> FileController::readSizesDataFromFile() {
     std::cout<<"Podaj sciezke do pliku"<<std::endl;
     std::string filePath;
     std::cin>>filePath;
@@ -17,7 +17,18 @@ std::vector<int> FileReader::readDataFromFile() {
         fileStream.close();
     }else{
         std::cout<<"Nie mozna otworzyc pliku podaj sciezke jeszcze raz"<<std::endl;
-        FileReader::readDataFromFile();
+        FileController::readSizesDataFromFile();
     }
     return values;
+}
+template<typename T>
+void FileController::saveSortedArray(const std::vector<T>& arr, const std::string& fileName, const std::string& arrayType){
+    std::ifstream fileStream(fileName);
+    if (fileStream.is_open()){
+        fileStream << arr.size() << ", " << arrayType << std::endl;
+        for (const auto &item: arr){
+            fileStream << item << " ";
+        }
+        fileStream.close();
+    }
 }

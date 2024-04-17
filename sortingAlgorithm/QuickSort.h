@@ -25,7 +25,7 @@ public:
         std::string type = identrifyType(arr);
         std::cout<<"Sortowanie tablicy o rozmiarze "<<arr.size()<<" i typie "<<type<<std::endl;
         SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN); // Ustaw kolor tekstu na zielony
-        std::cout << "Czas sortowania: " << elapsed.count() << " ms\n"<<" "<<pivotType;
+        std::cout << "Czas sortowania: " << elapsed.count() << " ms\n";
         SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); // Reset do domyślnych kolorów
         saveResultsToFile(arr.size(), identrifyType(arr), elapsed.count(),pivotType);
     }
