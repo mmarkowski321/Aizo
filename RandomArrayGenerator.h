@@ -20,8 +20,6 @@ public:
     template<typename T>
     static std::vector<T> generatePartiallySortedArray66(int size);
     template<typename T>
-    static void saveArrayToFile(const std::vector<T>& arr, const std::string& filename, const std::string& arrayType);
-    template<typename T>
     static std::vector<T> generateArray(int size);
 };
 

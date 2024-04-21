@@ -7,6 +7,7 @@ public:
     static void printAllSortingMethods();
     static int getUserInput();
     static void printAllKindOfTables();
+    static void printTypeOfTable();
 };
 
 #endif // USERINTERFACE_H

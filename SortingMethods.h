@@ -18,7 +18,28 @@ public:
 
     template<typename T>
     static void getShellChoice(std::vector<T> &arrays);
+
+    template<typename T>
+    static void saveTableToFile(std::string fileName,std::vector<T> array,std::string sortingMethodName);
+
 };
+
+
+template<typename T>
+void SortingMethods::saveTableToFile(std::string filename, std::vector<T> array,std::string sortingMethodName) {
+    std::ofstream fileStream(filename, std::ios::app); // Użyj ofstream z flagą app do dopisywania
+
+    if (fileStream.is_open()) {
+        fileStream << "\n\n" <<sortingMethodName << "\n\n"; // Dodaj nazwę metody sortowania jako nagłówek
+        for (const auto &item : array) {
+            fileStream << item << " "; // Zapisz elementy tablicy do pliku
+        }
+        fileStream << "\n"; // Dodaj nową linię na końcu zapisu każdej tablicy
+        std::cout << "\n\n"; // Wyświetl nową linię w konsoli (jeśli to potrzebne)
+    } else {
+        std::cerr << "Nie udało się otworzyć pliku: " << filename << std::endl; // Informacja o błędzie
+    }
+}
 
 template<typename T>
 void SortingMethods::sortingMethod(std::vector<std::vector<T>>& arrays, int choosenMethod) {
@@ -26,14 +47,18 @@ void SortingMethods::sortingMethod(std::vector<std::vector<T>>& arrays, int choo
         for (auto &array: arrays) {
             switch (choosenMethod) {
                 case 1: {
+                    saveTableToFile("unsortedAllTables.txt",array,"InsertionSort");
                     InsertionSort<T> sorter;
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"InsertionSort");
                     sorter.checkCorrectnessOfSorting(array);
                     break;
                 }
                 case 3: {
+                    saveTableToFile("unsortedAllTables.txt",array,"HeapSort");
                     HeapSort<T> sorter;
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"HeapSort");
                     sorter.checkCorrectnessOfSorting(array);
                     break;
                 }
@@ -57,16 +82,22 @@ void SortingMethods::getShellChoice(std::vector<T> &arrays){
             for(auto& array : arrays){
                 using ValueType = typename std::decay<decltype(array)>::type::value_type;
                 if constexpr (std::is_same_v<ValueType, int>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"ShellSort");
                     ShellSort<ValueType> sorter(ShellSort<int>::GapSequence::Shell);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"ShellSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, double>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"ShellSort");
                     ShellSort<ValueType> sorter(ShellSort<double>::GapSequence::Shell);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"ShellSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, char>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"ShellSort");
                     ShellSort<ValueType> sorter(ShellSort<char>::GapSequence::Shell);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"ShellSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else {
                     std::cout<<"Blad";
@@ -78,16 +109,22 @@ void SortingMethods::getShellChoice(std::vector<T> &arrays){
             for(auto& array : arrays){
                 using ValueType = typename std::decay<decltype(array)>::type::value_type;
                 if constexpr (std::is_same_v<ValueType, int>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"ShellSort");
                     ShellSort<ValueType> sorter(ShellSort<int>::GapSequence::Sedgewick);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"ShellSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, double>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"ShellSort");
                     ShellSort<ValueType> sorter(ShellSort<double>::GapSequence::Sedgewick);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"ShellSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, char>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"ShellSort");
                     ShellSort<ValueType> sorter(ShellSort<char>::GapSequence::Sedgewick);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"ShellSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else {
                     std::cout<<"Blad";
@@ -99,16 +136,22 @@ void SortingMethods::getShellChoice(std::vector<T> &arrays){
             for(auto& array : arrays){
                 using ValueType = typename std::decay<decltype(array)>::type::value_type;
                 if constexpr (std::is_same_v<ValueType, int>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"ShellSort");
                     ShellSort<ValueType> sorter(ShellSort<int>::GapSequence::Shell);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"ShellSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, double>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"ShellSort");
                     ShellSort<ValueType> sorter(ShellSort<double>::GapSequence::Shell);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"ShellSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, char>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"ShellSort");
                     ShellSort<ValueType> sorter(ShellSort<char>::GapSequence::Shell);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"ShellSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else {
                     std::cout<<"Bład";
@@ -134,16 +177,22 @@ void SortingMethods::getPivotChoice(std::vector<T> &arrays) {
             for(auto& array : arrays){
                 using ValueType = typename std::decay<decltype(array)>::type::value_type;
                 if constexpr (std::is_same_v<ValueType, int>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<int>::PivotType::FIRST);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, double>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<double>::PivotType::FIRST);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, char>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<char>::PivotType::FIRST);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else {
                     std::cout<<"Bład";
@@ -156,16 +205,22 @@ void SortingMethods::getPivotChoice(std::vector<T> &arrays) {
             for(auto& array : arrays){
                 using ValueType = typename std::decay<decltype(array)>::type::value_type;
                 if constexpr (std::is_same_v<ValueType, int>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<int>::PivotType::LAST);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, double>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<double>::PivotType::LAST);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, char>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<char>::PivotType::LAST);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else {
                     std::cout<<"Bład";
@@ -178,16 +233,22 @@ void SortingMethods::getPivotChoice(std::vector<T> &arrays) {
             for(auto& array : arrays){
                 using ValueType = typename std::decay<decltype(array)>::type::value_type;
                 if constexpr (std::is_same_v<ValueType, int>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<int>::PivotType::MIDDLE);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, double>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<double>::PivotType::MIDDLE);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, char>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<char>::PivotType::MIDDLE);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else {
                     std::cout<<"Bład";
@@ -200,16 +261,22 @@ void SortingMethods::getPivotChoice(std::vector<T> &arrays) {
             for(auto& array : arrays){
                 using ValueType = typename std::decay<decltype(array)>::type::value_type;
                 if constexpr (std::is_same_v<ValueType, int>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<int>::PivotType::RANDOM);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, double>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<double>::PivotType::RANDOM);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, char>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<char>::PivotType::RANDOM);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else {
                     std::cout<<"Bład";
@@ -222,16 +289,22 @@ void SortingMethods::getPivotChoice(std::vector<T> &arrays) {
             for(auto& array : arrays){
                 using ValueType = typename std::decay<decltype(array)>::type::value_type;
                 if constexpr (std::is_same_v<ValueType, int>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<int>::PivotType::LAST);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, double>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<double>::PivotType::LAST);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else if constexpr (std::is_same_v<ValueType, char>) {
+                    saveTableToFile("unsortedAllTables.txt",array,"QuickSort");
                     QuickSort<ValueType> sorter(QuickSort<char>::PivotType::LAST);
                     sorter.sort(array);
+                    saveTableToFile("sortedAllTables.txt",array,"QuickSort");
                     sorter.checkCorrectnessOfSorting(array);
                 } else {
                     std::cout<<"Bład";

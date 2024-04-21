@@ -7,22 +7,7 @@
 #include "UserInterface.h"
 #include "FileController.h"
 
-// Pomocnicza funkcja do zapisu tablicy do pliku
-template<typename T>
-void RandomArrayGenerator::saveArrayToFile(const std::vector<T>& arr, const std::string& filename, const std::string& arrayType) {
-    std::ofstream file(filename);
-    if (file.is_open()) {
-        // Zapisz rozmiar i typ tablicy
-        file << arr.size() << ", " << arrayType << std::endl;
 
-        // Zapisz elementy tablicy
-        for (const T& item : arr) {
-            file << item << " ";
-        }
-        file << std::endl;
-    }
-    file.close();
-}
 template<typename T>
 std::vector<T> RandomArrayGenerator::generateArray(int size) {
     std::vector<T> arr(size);
@@ -49,7 +34,6 @@ std::vector<T> RandomArrayGenerator::generateRandomArray(int size) {
             val = static_cast<char>('a' + (rand() % 26));
         }
     }
-    RandomArrayGenerator::saveArrayToFile(arr, "generateRandomArray.txt", typeid(T).name());
     return arr;
 }
 // Funkcja generująca tablicę z wartościami rosnącymi
@@ -57,7 +41,6 @@ template<typename T>
 std::vector<T> RandomArrayGenerator::generateIncreasingArray(int size) {
     std::vector<T> arr = RandomArrayGenerator::generateArray<T>(size);
     std::sort(arr.begin(), arr.end());
-    RandomArrayGenerator::saveArrayToFile(arr, "generateIncreasingArray.txt", typeid(T).name());
     return arr;
 }
 
@@ -66,7 +49,6 @@ template<typename T>
 std::vector<T> RandomArrayGenerator::generateDecreasingArray(int size) {
     std::vector<T> arr = RandomArrayGenerator::generateArray<T>(size);
     std::reverse(arr.begin(), arr.end());
-    RandomArrayGenerator::saveArrayToFile(arr, "generateDecreasingArray.txt", typeid(T).name());
     return arr;
 }
 
@@ -75,7 +57,6 @@ template<typename T>
 std::vector<T> RandomArrayGenerator::generatePartiallySortedArray33(int size) {
     std::vector<T> arr = RandomArrayGenerator::generateArray<T>(size);
     std::sort(arr.begin(), arr.begin() + (size / 3));
-    RandomArrayGenerator::saveArrayToFile(arr, "generatePartiallySortedArray33.txt", typeid(T).name());
     return arr;
 }
 
@@ -84,7 +65,6 @@ template<typename T>
 std::vector<T> RandomArrayGenerator::generatePartiallySortedArray66(int size) {
     std::vector<T> arr = RandomArrayGenerator::generateArray<T>(size);
     std::sort(arr.begin(), arr.begin() + (2 * size / 3));
-    RandomArrayGenerator::saveArrayToFile(arr, "generatePartiallySortedArray66.txt", typeid(T).name());
     return arr;
 }
 
