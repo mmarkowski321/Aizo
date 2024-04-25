@@ -1,21 +1,8 @@
 # ninja log v5
-26	301	7353956643467685	CMakeFiles/Aizo.dir/UserInterface.cpp.obj	36f490b9e408acc6
-19	378	7353956644242928	CMakeFiles/Aizo.dir/FileController.cpp.obj	29a481c24ac7d18c
-3	1449	7353981558094878	CMakeFiles/Aizo.dir/main.cpp.obj	9785b10a74446cae
-11	1827	7353969082829788	CMakeFiles/Aizo.dir/AlgorithmTests.cpp.obj	6f87a7354e1412be
-36	751	7353956647954207	CMakeFiles/Aizo.dir/RandomArrayGenerator.cpp.obj	307b666ba8c446ae
-1449	1861	7353981562143322	Aizo.exe	6595645162dcb81b
-2	194	7353989126021282	build.ninja	15c0f2deed021408
-0	177	7353989126021282	build.ninja	15c0f2deed021408
 26	285	7353989321517273	CMakeFiles/Aizo.dir/UserInterface.cpp.obj	36f490b9e408acc6
-10	675	7353989325399087	CMakeFiles/Aizo.dir/RandomArrayGenerator.cpp.obj	307b666ba8c446ae
-2	1496	7353989333601493	CMakeFiles/Aizo.dir/main.cpp.obj	9785b10a74446cae
-1496	1910	7353989337682734	Aizo.exe	6595645162dcb81b
-3	1525	7353994856256864	CMakeFiles/Aizo.dir/main.cpp.obj	9785b10a74446cae
-1525	1938	7353994860375355	Aizo.exe	6595645162dcb81b
-3	1628	7354004421276930	CMakeFiles/Aizo.dir/main.cpp.obj	9785b10a74446cae
-1628	2104	7354004425993197	Aizo.exe	6595645162dcb81b
-2	1552	7354006564984363	CMakeFiles/Aizo.dir/main.cpp.obj	9785b10a74446cae
-1552	2002	7354006569442031	Aizo.exe	6595645162dcb81b
+19	378	7353956644242928	CMakeFiles/Aizo.dir/FileController.cpp.obj	29a481c24ac7d18c
 3	1771	7354016450768489	CMakeFiles/Aizo.dir/main.cpp.obj	9785b10a74446cae
+11	1827	7353969082829788	CMakeFiles/Aizo.dir/AlgorithmTests.cpp.obj	6f87a7354e1412be
+10	675	7353989325399087	CMakeFiles/Aizo.dir/RandomArrayGenerator.cpp.obj	307b666ba8c446ae
 1771	2196	7354016455046455	Aizo.exe	6595645162dcb81b
+0	177	7357328562946511	build.ninja	15c0f2deed021408

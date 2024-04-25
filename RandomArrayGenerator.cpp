@@ -6,18 +6,30 @@
 #include <fstream>
 #include "UserInterface.h"
 #include "FileController.h"
-
+#include <random>
+#include <type_traits>
+#include <limits>
 
 template<typename T>
 std::vector<T> RandomArrayGenerator::generateArray(int size) {
     std::vector<T> arr(size);
-    for (T& val : arr) {
-        if constexpr (std::is_same_v<T, int>) {
-            val = rand() % 1000000;
-        } else if constexpr (std::is_same_v<T, double>) {
-            val = static_cast<double>(rand()) / RAND_MAX * 1000000.0;
-        } else if constexpr (std::is_same_v<T, char>) {
-            val = static_cast<char>('a' + (rand() % 26));
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    if constexpr (std::is_same_v<T, int>) {
+        std::uniform_int_distribution<int> dist(std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
+        for (T& val : arr) {
+            val = dist(gen);
+        }
+    } else if constexpr (std::is_same_v<T, double>) {
+        std::uniform_real_distribution<double> dist(std::numeric_limits<double>::lowest(), std::numeric_limits<double>::max());
+        for (T& val : arr) {
+            val = dist(gen);
+        }
+    } else if constexpr (std::is_same_v<T, char>) {
+        std::uniform_int_distribution<int> dist(std::numeric_limits<char>::min(), std::numeric_limits<char>::max());
+        for (T& val : arr) {
+            val = static_cast<char>(dist(gen));
         }
     }
     return arr;
@@ -25,13 +37,23 @@ std::vector<T> RandomArrayGenerator::generateArray(int size) {
 template<typename T>
 std::vector<T> RandomArrayGenerator::generateRandomArray(int size) {
     std::vector<T> arr(size);
-    for (T& val : arr) {
-        if constexpr (std::is_same_v<T, int>) {
-            val = rand() % 1000000;
-        } else if constexpr (std::is_same_v<T, double>) {
-            val = static_cast<double>(rand()) / RAND_MAX * 1000000.0;
-        } else if constexpr (std::is_same_v<T, char>) {
-            val = static_cast<char>('a' + (rand() % 26));
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    if constexpr (std::is_same_v<T, int>) {
+        std::uniform_int_distribution<int> dist(std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
+        for (T& val : arr) {
+            val = dist(gen);
+        }
+    } else if constexpr (std::is_same_v<T, double>) {
+        std::uniform_real_distribution<double> dist(std::numeric_limits<double>::lowest(), std::numeric_limits<double>::max());
+        for (T& val : arr) {
+            val = dist(gen);
+        }
+    } else if constexpr (std::is_same_v<T, char>) {
+        std::uniform_int_distribution<int> dist(std::numeric_limits<char>::min(), std::numeric_limits<char>::max());
+        for (T& val : arr) {
+            val = static_cast<char>(dist(gen));
         }
     }
     return arr;
@@ -55,16 +77,79 @@ std::vector<T> RandomArrayGenerator::generateDecreasingArray(int size) {
 // Funkcja generująca tablicę, gdzie 33% jest posortowane rosnąco
 template<typename T>
 std::vector<T> RandomArrayGenerator::generatePartiallySortedArray33(int size) {
-    std::vector<T> arr = RandomArrayGenerator::generateArray<T>(size);
-    std::sort(arr.begin(), arr.begin() + (size / 3));
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::vector<T> arr(size);
+    T current_value = std::numeric_limits<T>::min();
+    int sortedSize = static_cast<int>(size * 0.33);  // Obliczenie 33% rozmiaru tablicy, konwersja na int
+
+    // Wypełnienie początkowej części tablicy liczbami posortowanymi
+    if constexpr (std::is_arithmetic<T>::value) {
+
+        for (int i = 0; i < sortedSize; ++i) {
+            arr[i] = current_value;
+            ++current_value; // Inkrementacja wartości dla kolejnych elementów
+        }
+    }
+
+    // Wypełnienie pozostałej części tablicy losowymi liczbami większymi od już wypełnionych
+    if constexpr (std::is_integral<T>::value) {
+        std::uniform_int_distribution<T> dis(current_value, std::numeric_limits<T>::max());
+        for (int i = sortedSize; i < size; ++i) {
+            arr[i] = dis(gen);
+        }
+    } else if constexpr (std::is_floating_point<T>::value) {
+        std::uniform_real_distribution<T> dis(static_cast<T>(current_value), std::numeric_limits<T>::max());
+        for (int i = sortedSize; i < size; ++i) {
+            arr[i] = dis(gen);
+        }
+    } else if constexpr (std::is_same<T, char>::value) {
+        // Przykład, gdybyśmy chcieli generować losowe znaki
+        std::uniform_int_distribution<int> dis('a', 'z');  // Zakres dla małych liter a-z
+        for (int i = sortedSize; i < size; ++i) {
+            arr[i] = static_cast<char>(dis(gen));
+        }
+    }
+
     return arr;
 }
 
-// Funkcja generująca tablicę, gdzie 66% jest posortowane rosnąco
 template<typename T>
-std::vector<T> RandomArrayGenerator::generatePartiallySortedArray66(int size) {
-    std::vector<T> arr = RandomArrayGenerator::generateArray<T>(size);
-    std::sort(arr.begin(), arr.begin() + (2 * size / 3));
+std::vector<T> RandomArrayGenerator::generatePartiallySortedArray66(int size)  {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::vector<T> arr(size);
+    T current_value = std::numeric_limits<T>::min();
+    int sortedSize = static_cast<int>(size * 0.66);  // Obliczenie 33% rozmiaru tablicy, konwersja na int
+
+    // Wypełnienie początkowej części tablicy liczbami posortowanymi
+    if constexpr (std::is_arithmetic<T>::value) {
+
+        for (int i = 0; i < sortedSize; ++i) {
+            arr[i] = current_value;
+            ++current_value; // Inkrementacja wartości dla kolejnych elementów
+        }
+    }
+
+    // Wypełnienie pozostałej części tablicy losowymi liczbami większymi od już wypełnionych
+    if constexpr (std::is_integral<T>::value) {
+        std::uniform_int_distribution<T> dis(current_value, std::numeric_limits<T>::max());
+        for (int i = sortedSize; i < size; ++i) {
+            arr[i] = dis(gen);
+        }
+    } else if constexpr (std::is_floating_point<T>::value) {
+        std::uniform_real_distribution<T> dis(static_cast<T>(current_value), std::numeric_limits<T>::max());
+        for (int i = sortedSize; i < size; ++i) {
+            arr[i] = dis(gen);
+        }
+    } else if constexpr (std::is_same<T, char>::value) {
+        // Przykład, gdybyśmy chcieli generować losowe znaki
+        std::uniform_int_distribution<int> dis('a', 'z');  // Zakres dla małych liter a-z
+        for (int i = sortedSize; i < size; ++i) {
+            arr[i] = static_cast<char>(dis(gen));
+        }
+    }
+
     return arr;
 }
 
